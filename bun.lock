@@ -7,7 +7,7 @@
       "devDependencies": {
         "@eslint/js": "~9.39.5",
         "@sudobility/di": "^1.5.79",
-        "@sudobility/shapeshyft_types": "^1.1.18",
+        "@sudobility/shapeshyft_types": "^1.1.19",
         "@sudobility/types": "^1.9.76",
         "@tanstack/react-query": "~5.104.5",
         "@testing-library/dom": "~10.4.2",
@@ -27,7 +27,7 @@
         "vitest": "~4.1.12",
       },
       "peerDependencies": {
-        "@sudobility/shapeshyft_types": "^1.1.18",
+        "@sudobility/shapeshyft_types": "^1.1.19",
         "@sudobility/types": "^1.9.76",
         "@tanstack/react-query": ">=5.0.0",
         "react": ">=18.0.0",
@@ -383,7 +383,7 @@
 
     "@sudobility/shapeshyft_engine": ["@sudobility/shapeshyft_engine@1.0.12", "https://npm.pkg.github.com/download/@sudobility/shapeshyft_engine/1.0.12/eb2fc50373abd3808ed16f948001f6e091ddea52", { "dependencies": { "@sudobility/types": "^1.9.72" }, "peerDependencies": { "@anthropic-ai/sdk": "^0.39.0", "@google/generative-ai": "^0.21.0", "groq-sdk": "^0.37.0", "openai": "^4.77.0", "sharp": "^0.35.4" } }, "sha512-gNVH89kzF7eVTwW+nXNKh1+eCEyjv3yluiiYUAw+xJfYsqbcKliMOFCT2Bs8RGczFC1juUCOscwbFlhCSlhsHA=="],
 
-    "@sudobility/shapeshyft_types": ["@sudobility/shapeshyft_types@1.1.18", "https://npm.pkg.github.com/download/@sudobility/shapeshyft_types/1.1.18/8a735f4eb7185034b1363d80eff1860519d3311e", { "peerDependencies": { "@sudobility/shapeshyft_engine": "^1.0.12", "@sudobility/types": "^1.9.76" } }, "sha512-nkiit3gTae+NaaQ7kxXO16Csv6M8nw1+za/A02qpqLyRriayZLcVh90HSvaNlERVDxqAT6uY+RzfempebBeMrQ=="],
+    "@sudobility/shapeshyft_types": ["@sudobility/shapeshyft_types@1.1.19", "https://npm.pkg.github.com/download/@sudobility/shapeshyft_types/1.1.19/39eb2948b8356a2bc0d0a26a625649680092c474", { "peerDependencies": { "@sudobility/shapeshyft_engine": "^1.0.13", "@sudobility/types": "^1.9.76" } }, "sha512-bwwIKpVfZU5IrldaIXf0+/aM3VHpchi6XJfAerYGg6OBMmacIZI2I/PM9X7R2Aw3x/uAz70GgTtKvRoxisnEoQ=="],
 
     "@sudobility/types": ["@sudobility/types@1.9.76", "https://npm.pkg.github.com/download/@sudobility/types/1.9.76/71635156f72fd9461107d5f147b3dc1c49f863d0", {}, "sha512-b7maZHR5wM84VlQ+l9R+2guzSOrExog6OUNy1oCe7h0abW13syycmnLQL0g+qql0aQ84qTB4A0mJelhY3Vef4Q=="],
 
