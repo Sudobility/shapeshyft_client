@@ -6,7 +6,7 @@
       "name": "@sudobility/shapeshyft_client",
       "devDependencies": {
         "@eslint/js": "~10.0.1",
-        "@sudobility/di": "^1.5.81",
+        "@sudobility/di": "^1.5.82",
         "@sudobility/shapeshyft_types": "^1.1.19",
         "@sudobility/types": "^1.9.76",
         "@tanstack/react-query": "~5.104.5",
@@ -383,7 +383,7 @@
 
     "@standard-schema/spec": ["@standard-schema/spec@1.1.0", "", {}, "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="],
 
-    "@sudobility/di": ["@sudobility/di@1.5.81", "https://npm.pkg.github.com/download/@sudobility/di/1.5.81/20d4df4bd26d891c1467f1f96382ea26f0a1af78", { "peerDependencies": { "@notifee/react-native": ">=7.0.0", "@react-native-async-storage/async-storage": ">=1.19.0", "@react-native-community/netinfo": ">=9.0.0", "@react-native-firebase/analytics": ">=18.0.0", "@react-native-firebase/app": ">=18.0.0", "@react-native-firebase/messaging": ">=18.0.0", "@sudobility/types": "^1.9.76", "firebase": ">=11.0.0", "react": ">=18.0.0", "react-native": ">=0.70.0" } }, "sha512-VVjJf4yoG3zeEazE8ZcTZhPQdnNoly5BFh08N2xMIA17zFGsI68iC+XdYinHh3ljd9ojCcEO4eirojALyyDE8A=="],
+    "@sudobility/di": ["@sudobility/di@1.5.82", "https://npm.pkg.github.com/download/@sudobility/di/1.5.82/78ffa45ee6bd3184dec7edc40f36f9acd3021ba1", { "peerDependencies": { "@notifee/react-native": ">=7.0.0", "@react-native-async-storage/async-storage": ">=1.19.0", "@react-native-community/netinfo": ">=9.0.0", "@react-native-firebase/analytics": ">=18.0.0", "@react-native-firebase/app": ">=18.0.0", "@react-native-firebase/messaging": ">=18.0.0", "@sudobility/types": "^1.9.76", "firebase": ">=11.0.0", "react": ">=18.0.0", "react-native": ">=0.70.0" } }, "sha512-gu2Uw8HfUvLkeLJJDeY8VFfBgk33mQ0k7dUr6MqdKjfyjsgE7q7QtBtYFo17D76B75ST061GKm1vumdKrfCFww=="],
 
     "@sudobility/shapeshyft_engine": ["@sudobility/shapeshyft_engine@1.0.12", "https://npm.pkg.github.com/download/@sudobility/shapeshyft_engine/1.0.12/eb2fc50373abd3808ed16f948001f6e091ddea52", { "dependencies": { "@sudobility/types": "^1.9.72" }, "peerDependencies": { "@anthropic-ai/sdk": "^0.39.0", "@google/generative-ai": "^0.21.0", "groq-sdk": "^0.37.0", "openai": "^4.77.0", "sharp": "^0.35.4" } }, "sha512-gNVH89kzF7eVTwW+nXNKh1+eCEyjv3yluiiYUAw+xJfYsqbcKliMOFCT2Bs8RGczFC1juUCOscwbFlhCSlhsHA=="],
 
