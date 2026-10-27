@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/shapeshyft_client",
-  "version": "0.0.115",
+  "version": "0.0.116",
   "description": "React client library for ShapeShyft API with TanStack Query hooks",
   "type": "module",
   "main": "dist/index.js",
