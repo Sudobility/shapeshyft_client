@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/shapeshyft_client",
-  "version": "0.0.122",
+  "version": "0.0.123",
   "description": "React client library for ShapeShyft API with TanStack Query hooks",
   "type": "module",
   "main": "dist/index.js",
@@ -36,16 +36,16 @@
   "author": "John Huang",
   "license": "BUSL-1.1",
   "peerDependencies": {
-    "@sudobility/shapeshyft_types": "^1.1.23",
-    "@sudobility/types": "^1.9.79",
+    "@sudobility/shapeshyft_types": "^1.1.25",
+    "@sudobility/types": "^1.10.1",
     "@tanstack/react-query": ">=5.0.0",
     "react": ">=18.0.0"
   },
   "devDependencies": {
     "@eslint/js": "~10.0.1",
-    "@sudobility/di": "^1.5.86",
-    "@sudobility/shapeshyft_types": "^1.1.23",
-    "@sudobility/types": "^1.9.79",
+    "@sudobility/di": "^1.5.87",
+    "@sudobility/shapeshyft_types": "^1.1.25",
+    "@sudobility/types": "^1.10.1",
     "@tanstack/react-query": "~5.104.5",
     "@testing-library/dom": "~10.4.2",
     "@testing-library/react": "~16.3.3",
