@@ -162,6 +162,130 @@ describe('ShapeshyftClient', () => {
   });
 
   // =============================================================================
+  // SITE-WIDE LLM API KEYS
+  // =============================================================================
+
+  describe('Site-wide LLM API Keys', () => {
+    const token = 'firebase-token';
+    const keyId = 'site-key-uuid-123';
+
+    describe('getSiteKeys', () => {
+      it('should fetch all site-wide keys', async () => {
+        const mockKeys = [
+          { uuid: 'site-1', key_name: 'Platform OpenAI', provider: 'openai' },
+        ];
+        vi.mocked(mockNetworkClient.get).mockResolvedValue({
+          ok: true,
+          data: { success: true, data: mockKeys },
+        });
+
+        const result = await client.getSiteKeys(token);
+
+        expect(mockNetworkClient.get).toHaveBeenCalledWith(
+          `${baseUrl}/api/v1/site/llm-keys`,
+          expect.objectContaining({
+            headers: expect.objectContaining({
+              Authorization: `Bearer ${token}`,
+            }),
+          })
+        );
+        expect(result.data).toEqual(mockKeys);
+      });
+
+      it('should throw error on failed request', async () => {
+        vi.mocked(mockNetworkClient.get).mockResolvedValue({
+          ok: false,
+          data: { success: false, error: 'Site admin access required' },
+        });
+
+        await expect(client.getSiteKeys(token)).rejects.toThrow(
+          'Failed to get site keys'
+        );
+      });
+    });
+
+    describe('getSiteKey', () => {
+      it('should fetch a single site-wide key', async () => {
+        const mockKey = { uuid: keyId, key_name: 'Test', provider: 'openai' };
+        vi.mocked(mockNetworkClient.get).mockResolvedValue({
+          ok: true,
+          data: { success: true, data: mockKey },
+        });
+
+        const result = await client.getSiteKey(keyId, token);
+
+        expect(mockNetworkClient.get).toHaveBeenCalledWith(
+          `${baseUrl}/api/v1/site/llm-keys/${keyId}`,
+          expect.any(Object)
+        );
+        expect(result.data).toEqual(mockKey);
+      });
+    });
+
+    describe('createSiteKey', () => {
+      it('should create a new site-wide key', async () => {
+        const createData = {
+          key_name: 'Platform OpenAI',
+          provider: 'openai' as const,
+          api_key: 'sk-test',
+        };
+        const mockKey = { uuid: 'new-site-key', ...createData };
+        vi.mocked(mockNetworkClient.post).mockResolvedValue({
+          ok: true,
+          data: { success: true, data: mockKey },
+        });
+
+        const result = await client.createSiteKey(createData, token);
+
+        expect(mockNetworkClient.post).toHaveBeenCalledWith(
+          `${baseUrl}/api/v1/site/llm-keys`,
+          createData,
+          expect.any(Object)
+        );
+        expect(result.data).toEqual(mockKey);
+      });
+    });
+
+    describe('updateSiteKey', () => {
+      it('should update an existing site-wide key', async () => {
+        const updateData = { key_name: 'Updated' };
+        const mockKey = { uuid: keyId, key_name: 'Updated' };
+        vi.mocked(mockNetworkClient.put).mockResolvedValue({
+          ok: true,
+          data: { success: true, data: mockKey },
+        });
+
+        const result = await client.updateSiteKey(keyId, updateData, token);
+
+        expect(mockNetworkClient.put).toHaveBeenCalledWith(
+          `${baseUrl}/api/v1/site/llm-keys/${keyId}`,
+          updateData,
+          expect.any(Object)
+        );
+        expect(result.data).toEqual(mockKey);
+      });
+    });
+
+    describe('deleteSiteKey', () => {
+      it('should delete a site-wide key', async () => {
+        const mockKey = { uuid: keyId };
+        vi.mocked(mockNetworkClient.delete).mockResolvedValue({
+          ok: true,
+          data: { success: true, data: mockKey },
+        });
+
+        const result = await client.deleteSiteKey(keyId, token);
+
+        expect(mockNetworkClient.delete).toHaveBeenCalledWith(
+          `${baseUrl}/api/v1/site/llm-keys/${keyId}`,
+          expect.any(Object)
+        );
+        expect(result.data).toEqual(mockKey);
+      });
+    });
+  });
+
+  // =============================================================================
   // PROJECTS
   // =============================================================================
 

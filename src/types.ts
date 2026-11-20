@@ -76,6 +76,9 @@ export const QUERY_KEYS = {
   keys: (entitySlug: string) => ['shapeshyft', 'keys', entitySlug] as const,
   key: (entitySlug: string, keyId: string) =>
     ['shapeshyft', 'keys', entitySlug, keyId] as const,
+  // Site-wide (platform) LLM keys, site-admin only
+  siteKeys: () => ['shapeshyft', 'siteKeys'] as const,
+  siteKey: (keyId: string) => ['shapeshyft', 'siteKeys', keyId] as const,
   projects: (entitySlug: string) =>
     ['shapeshyft', 'projects', entitySlug] as const,
   project: (entitySlug: string, projectId: string) =>

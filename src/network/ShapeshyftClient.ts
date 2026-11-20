@@ -19,6 +19,9 @@ import type {
   ProviderConfig,
   ProviderModelsResponse,
   RefreshApiKeyResponse,
+  SiteLlmApiKeyCreateRequest,
+  SiteLlmApiKeySafe,
+  SiteLlmApiKeyUpdateRequest,
   StorageConfigCreateRequest,
   StorageConfigUpdateRequest,
   UsageAnalyticsQueryParams,
@@ -288,6 +291,161 @@ export class ShapeshyftClient {
 
     if (!response.ok || !response.data) {
       throw handleApiError(response, 'delete key');
+    }
+
+    return response.data;
+  }
+
+  // =============================================================================
+  // SITE-WIDE LLM API KEYS (Firebase auth + site admin required)
+  //
+  // Platform-level provider credentials that are NOT owned by any entity. Only
+  // site admins may read or manage them. At invocation an active site-wide key
+  // for a provider is used as a fallback when an entity has not supplied its
+  // own key for that provider.
+  // =============================================================================
+
+  /**
+   * Get all site-wide LLM API keys.
+   * GET /api/v1/site/llm-keys
+   *
+   * @param token - Firebase ID token for authentication (must be a site admin)
+   * @returns Response containing an array of safe key objects (API key values are masked)
+   * @throws {ShapeshyftApiError} If the request fails (e.g., 401 unauthorized, 403 not a site admin)
+   */
+  async getSiteKeys(
+    token: FirebaseIdToken
+  ): Promise<BaseResponse<SiteLlmApiKeySafe[]>> {
+    const headers = createAuthHeaders(token);
+
+    const response = await this.networkClient.get<
+      BaseResponse<SiteLlmApiKeySafe[]>
+    >(this.buildUrlWithTestMode(`/api/v1/site/llm-keys`), { headers });
+
+    if (!response.ok || !response.data) {
+      throw handleApiError(response, 'get site keys');
+    }
+
+    return response.data;
+  }
+
+  /**
+   * Get a single site-wide LLM API key by ID.
+   * GET /api/v1/site/llm-keys/:keyId
+   *
+   * @param keyId - UUID of the site-wide LLM API key to retrieve
+   * @param token - Firebase ID token for authentication (must be a site admin)
+   * @returns Response containing the safe key object (API key value is masked)
+   * @throws {ShapeshyftApiError} If the request fails
+   */
+  async getSiteKey(
+    keyId: string,
+    token: FirebaseIdToken
+  ): Promise<BaseResponse<SiteLlmApiKeySafe>> {
+    const headers = createAuthHeaders(token);
+
+    const response = await this.networkClient.get<
+      BaseResponse<SiteLlmApiKeySafe>
+    >(
+      this.buildUrlWithTestMode(
+        `/api/v1/site/llm-keys/${encodeURIComponent(keyId)}`
+      ),
+      { headers }
+    );
+
+    if (!response.ok || !response.data) {
+      throw handleApiError(response, 'get site key');
+    }
+
+    return response.data;
+  }
+
+  /**
+   * Create a new site-wide LLM API key.
+   * POST /api/v1/site/llm-keys
+   *
+   * @param data - Key creation payload including key_name, provider, and api_key
+   * @param token - Firebase ID token for authentication (must be a site admin)
+   * @returns Response containing the created key (API key value is masked)
+   * @throws {ShapeshyftApiError} If the request fails (e.g., 403 not a site admin, 400 validation error)
+   */
+  async createSiteKey(
+    data: SiteLlmApiKeyCreateRequest,
+    token: FirebaseIdToken
+  ): Promise<BaseResponse<SiteLlmApiKeySafe>> {
+    const headers = createAuthHeaders(token);
+
+    const response = await this.networkClient.post<
+      BaseResponse<SiteLlmApiKeySafe>
+    >(this.buildUrlWithTestMode(`/api/v1/site/llm-keys`), data, { headers });
+
+    if (!response.ok || !response.data) {
+      throw handleApiError(response, 'create site key');
+    }
+
+    return response.data;
+  }
+
+  /**
+   * Update a site-wide LLM API key.
+   * PUT /api/v1/site/llm-keys/:keyId
+   *
+   * @param keyId - UUID of the site-wide LLM API key to update
+   * @param data - Partial key update payload (e.g., key_name, api_key, is_active)
+   * @param token - Firebase ID token for authentication (must be a site admin)
+   * @returns Response containing the updated key
+   * @throws {ShapeshyftApiError} If the request fails
+   */
+  async updateSiteKey(
+    keyId: string,
+    data: SiteLlmApiKeyUpdateRequest,
+    token: FirebaseIdToken
+  ): Promise<BaseResponse<SiteLlmApiKeySafe>> {
+    const headers = createAuthHeaders(token);
+
+    const response = await this.networkClient.put<
+      BaseResponse<SiteLlmApiKeySafe>
+    >(
+      this.buildUrlWithTestMode(
+        `/api/v1/site/llm-keys/${encodeURIComponent(keyId)}`
+      ),
+      data,
+      { headers }
+    );
+
+    if (!response.ok || !response.data) {
+      throw handleApiError(response, 'update site key');
+    }
+
+    return response.data;
+  }
+
+  /**
+   * Delete a site-wide LLM API key.
+   * DELETE /api/v1/site/llm-keys/:keyId
+   *
+   * @param keyId - UUID of the site-wide LLM API key to delete
+   * @param token - Firebase ID token for authentication (must be a site admin)
+   * @returns Response containing the deleted key data
+   * @throws {ShapeshyftApiError} If the request fails
+   */
+  async deleteSiteKey(
+    keyId: string,
+    token: FirebaseIdToken
+  ): Promise<BaseResponse<SiteLlmApiKeySafe>> {
+    const headers = createAuthHeaders(token);
+
+    const response = await this.networkClient.delete<
+      BaseResponse<SiteLlmApiKeySafe>
+    >(
+      this.buildUrlWithTestMode(
+        `/api/v1/site/llm-keys/${encodeURIComponent(keyId)}`
+      ),
+      { headers }
+    );
+
+    if (!response.ok || !response.data) {
+      throw handleApiError(response, 'delete site key');
     }
 
     return response.data;
